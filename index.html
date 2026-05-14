@@ -6,22 +6,118 @@
   <title>AUREXION | ARX</title>
 
   <style>
-    body{
-      margin:0;
-      background:#050816;
-      background-image:
-radial-gradient(circle at 20% 20%, rgba(0,255,255,0.15) 2px, transparent 2px),
-radial-gradient(circle at 80% 40%, rgba(255,0,255,0.12) 2px, transparent 2px),
-radial-gradient(circle at 40% 80%, rgba(0,150,255,0.12) 2px, transparent 2px);
+    .navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 90px 20px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    overflow:hidden;
+    background:rgba(5,5,20,0.55);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(157,78,221,0.25);
+    box-shadow:0 0 25px rgba(0,217,255,0.15);
+    z-index:1000;
+}
 
-background-size:200px 200px;
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#9d4edd;
+    letter-spacing:2px;
+}
+
+img{
+    animation:spinLogo 6s linear infinite;
+}
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#9d4edd;
+     text-shadow:0 0 10px #9d4edd;
+}
+
+.buy-btn{
+    padding:12px 25px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(45deg,#7b2cbf,#c77dff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    animation: pulse 2s infinite;
+    margin-right:40px;
+}
+
+.buy-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px #9d4edd;
+}
+
+#loader{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#050816;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+#loader h1{
+    color:#6cf;
+    font-size:60px;
+    text-shadow:0 0 30px #00ccff;
+}
+
+#loader p{
+    color:#b388ff;
+    font-size:18px;
+}
+
+#countdown{
+    margin-top:20px;
+    font-size:35px;
+    font-weight:bold;
+    color:#6cf;
+    text-shadow:0 0 20px #00ccff;
+}
+
+   body{
+    margin:0;
+    background:#050816;
+
+    background-image:url("./worldmap.png");
+    background-size:100% auto;
+    background-position:top center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
       color:white;
       font-family:Arial, sans-serif;
       text-align:center;
     }
 
     .container{
-      padding-top:120px;
+      padding-top:50px;
       animation: fadeIn 2s ease;
     }
 @keyframes fadeIn{
@@ -40,7 +136,7 @@ background-size:200px 200px;
       color:#6cf;
 text-shadow:0 0 35px #00ccff, 0 0 70px #6cf;
       margin-bottom:10px;
-      animation: glowPulse 3s infinite alternate;
+      animation: glow 2s ease-in-out infinite alternate;
     }
     @keyframes glowPulse{
     from{
@@ -83,13 +179,181 @@ text-shadow:0 0 35px #00ccff, 0 0 70px #6cf;
       transform:scale(1.08);
 box-shadow:0 0 25px #00ccff;
     }
+    .buy-btn:hover{
+    transform:scale(1.08);
+}
+
+@keyframes glow{
+    from{
+        text-shadow:
+        0 0 10px #00d9ff,
+        0 0 20px #00d9ff,
+        0 0 40px #00d9ff;
+    }
+
+    to{
+        text-shadow:
+        0 0 20px #9d4edd,
+        0 0 40px #9d4edd,
+        0 0 80px #9d4edd;
+    }
+}
+
+.buy-btn:hover{
+    transform:scale(1.08);
+}
+
+html{
+    scroll-behavior:smooth;
+    }
+@keyframes pulse{
+    0%{
+        box-shadow:0 0 10px #9d4edd;
+    }
+    50%{
+        box-shadow:0 0 30px #c77dff;
+    }
+    100%{
+        box-shadow:0 0 10px #9d4edd;
+    }    
+}
+@keyframes spinLogo{
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+.particles{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:5;
+}
+
+.particles span{
+    position:absolute;
+    display:block;
+    width:12px;
+    height:12px;
+    background:#6cf;
+    border-radius:50%;
+    box-shadow:0 0 30px #00ccff;
+    animation:float 10s linear infinite;
+    bottom:-10px;
+}
+
+.particles span:nth-child(1){
+    left:10%;
+    animation-duration:8s;
+}
+
+.particles span:nth-child(2){
+    left:20%;
+    animation-duration:12s;
+}
+
+.particles span:nth-child(3){
+    left:35%;
+    animation-duration:7s;
+}
+
+.particles span:nth-child(4){
+    left:50%;
+    animation-duration:11s;
+}
+
+.particles span:nth-child(5){
+    left:65%;
+    animation-duration:9s;
+}
+
+.particles span:nth-child(6){
+    left:75%;
+    animation-duration:13s;
+}
+
+.particles span:nth-child(7){
+    left:85%;
+    animation-duration:6s;
+}
+
+.particles span:nth-child(8){
+    left:95%;
+    animation-duration:10s;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:0;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-110vh) scale(0);
+        opacity:0;
+    }
+}
+@media(max-width:768px){
+    .navbar{
+        padding:15px 20px;
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .nav-links{
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    h1{
+        font-size:45px;
+    }
+
+    p{
+        width:90%;
+        font-size:15px;
+    }
+
+    .buy-btn{
+        margin-right:0;
+    }
+}
   </style>
 </head>
-
 <body>
-<img src="./logo.png" width="220">
-  <div class="container">
+    <div class="particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+ <div id="loader">
     <h1>AUREXION</h1>
+    <p>Loading Solana Ecosystem...</p>
+</div>
+  <div class="container">
+    <img src="./logo.png" width="220" style="margin-top:20px;">
+    <h1 id="home">AUREXION</h1>
     <h2>ARX • Solana Ecosystem</h2>
 
     <p>
@@ -104,8 +368,7 @@ box-shadow:0 0 25px #00ccff;
     <a class="btn" href="https://x.com/AurexionARX" target="_blank">
   Follow on X
 </a>
-<h2>ROADMAP</h2>
-
+<h2 id="roadmap">ROADMAP</h2>
 <p>
 ✅ Phase 1 — Branding & Community Launch<br><br>
 
@@ -115,8 +378,7 @@ box-shadow:0 0 25px #00ccff;
 
 🌍 Phase 4 — Global Ecosystem Expansion
 </p>
-<h2>TOKENOMICS</h2>
-
+<h2 id="tokenomics">TOKENOMICS</h2>
 <p>
 Total Supply: 100,000,000 ARX<br><br>
 
@@ -126,12 +388,26 @@ Mintable: Yes — transparent ecosystem expansion only<br><br>
 
 Focus: Community • Utility • Long-term Growth
 </p>
+<h2 id="community">COMMUNITY</h2>
+
+<p>
+Telegram • X • Discord Coming Soon 🚀
+</p>
+
 <h2>CONTRACT</h2>
 
 <p>
 CA: Coming Soon After Official Launch 🚀
 </p>
 <h2>LIVE STATS</h2>
+<h2>LAUNCH COUNTDOWN</h2>
+
+<div id="countdown">
+    <span id="days">00</span>d :
+    <span id="hours">00</span>h :
+    <span id="minutes">00</span>m :
+    <span id="seconds">00</span>s
+</div>
 
 <p>
 🌍 Community Status: Growing<br><br>
@@ -152,5 +428,55 @@ CA: Coming Soon After Official Launch 🚀
 Built on Solana • Powered by Community 🚀
 </p>
   </div>
+
+<nav class="navbar">
+    <div class="logo">AUREXION</div>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#vommunity">Community</a>
+    </div>
+
+    <button class="buy-btn">BUY ARX</button>
+</nav>
+
+<script>
+document.querySelector(".buy-btn").addEventListener("click", () => {
+
+    alert("BUY ARX Coming Soon 🚀");
+
+});
+</script>
+
+<script>
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+    }, 2000);
+});
+</script>
+
+<script>
+const launchDate = new Date("2026-12-31 00:00:00").getTime();
+
+setInterval(() => {
+
+    const now = new Date().getTime();
+    const distance = launchDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+}, 1000);
+</script>
 
 </body>
