@@ -10,12 +10,14 @@ AUREXION is a community-driven crypto ecosystem focused on:
 - Decentralization
 
 ## Tokenomics
-- Total Supply: 100,000,000 ARX
+- Total Supply: 1.000.000.000 ARX
 - Network: Solana
-- Status: In Development
+- Status: Live on Solana
 
 ## Official Website
-https://aurexionarxlabs.github.io/AUREXION/
+https://aurexion-sigma.vercel.app
 
 ## Community
-Coming Soon...
+- Telegram: https://t.me/AurexionCommunity
+- X: https://x.com/AurexionARX
+- Discord: Coming Soon
