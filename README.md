@@ -7,7 +7,7 @@ AUREXION is a community-driven crypto ecosystem focused on:
 - Utility
 - Innovation
 - Long-term growth
-- Decentralization
+- - Transparency & Trust
 
 ## Tokenomics
 - Total Supply: 1.000.000.000 ARX
