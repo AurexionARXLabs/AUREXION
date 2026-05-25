@@ -1,39 +1,37 @@
-// Vercel Serverless Function
-// Tarayıcıdan değil, Vercel sunucusundan API'ye gider — CORS engeli olmaz
+// Vercel Serverless Function - CommonJS uyumlu
 // URL: /api/token
 
 const ARX_TOKEN_ADDRESS = "Hq6cJZpLJQymfafR4TYf1NHeiZCoup7zzczVUZbRpump";
 
-export default async function handler(req, res) {
-  // CORS header (frontend'in çağırabilmesi için)
+module.exports = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Cache-Control", "s-maxage=30, stale-while-revalidate=60");
 
   try {
-    // 1. Dexscreener dene
-    const dexUrl = `https://api.dexscreener.com/latest/dex/tokens/${ARX_TOKEN_ADDRESS}`;
+    // 1. Dexscreener
+    const dexUrl = "https://api.dexscreener.com/latest/dex/tokens/" + ARX_TOKEN_ADDRESS;
     const dexRes = await fetch(dexUrl);
 
     if (dexRes.ok) {
       const dexData = await dexRes.json();
       if (dexData.pairs && dexData.pairs.length > 0) {
-        const pair = dexData.pairs.sort(
-          (a, b) => (b.liquidity?.usd || 0) - (a.liquidity?.usd || 0)
-        )[0];
+        const pair = dexData.pairs.sort(function(a, b) {
+          return (b.liquidity && b.liquidity.usd || 0) - (a.liquidity && a.liquidity.usd || 0);
+        })[0];
 
         return res.status(200).json({
           source: "dexscreener",
           priceUsd: parseFloat(pair.priceUsd) || null,
           marketCap: pair.marketCap || pair.fdv || null,
-          volume: pair.volume?.h24 || null,
-          liquidity: pair.liquidity?.usd || null,
+          volume: (pair.volume && pair.volume.h24) || null,
+          liquidity: (pair.liquidity && pair.liquidity.usd) || null,
           updatedAt: new Date().toISOString()
         });
       }
     }
 
     // 2. Fallback: pump.fun
-    const pumpUrl = `https://frontend-api.pump.fun/coins/${ARX_TOKEN_ADDRESS}`;
+    const pumpUrl = "https://frontend-api.pump.fun/coins/" + ARX_TOKEN_ADDRESS;
     const pumpRes = await fetch(pumpUrl);
 
     if (pumpRes.ok) {
@@ -52,9 +50,8 @@ export default async function handler(req, res) {
       });
     }
 
-    // İkisi de başarısız
     return res.status(404).json({
-      error: "Token henüz herhangi bir API'de bulunamadı",
+      error: "Token henüz API'lerde bulunamadı",
       address: ARX_TOKEN_ADDRESS
     });
 
@@ -64,4 +61,4 @@ export default async function handler(req, res) {
       message: err.message
     });
   }
-}
+};
